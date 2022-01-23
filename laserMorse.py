@@ -7,7 +7,7 @@ Laser = 17
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
 GPIO.setup(Laser, GPIO.OUT) # GPIO Assign mode
 GPIO.output(Laser, GPIO.LOW) # on
-dit = 0.1
+dit = 0.1 #default duration of flashes
 da = 2.5 * dit
 
 MORSE_CODE_DICT = { 'A':'.-', 'B':'-...',
