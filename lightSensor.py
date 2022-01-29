@@ -6,12 +6,6 @@ from time import sleep
 from timeit import default_timer as timer
 
 ldr = LightSensor(18)
-oldLightState = "off"
-lightState = ""
-flashes = ""
-message = ""
-receiving = "true" 
-start = timer()
 
 MORSE_CODE_DICT = { 'A':'.-',     'B':'-...',
                     'C':'-.-.',   'D':'-..',     'E':'.',
@@ -68,9 +62,18 @@ def decrypt(message):
  
     return decipher
 
+
 # Main loop
 def main():
-    while receiving == "true":
+    lightState = ""
+    flashes = ""
+    message = ""
+
+    oldLightState = "off"
+    receiving = "true" 
+    start = timer()
+
+    while receiving:
         try:
             sleep(0.05)
             if ldr.value < 0.5:
