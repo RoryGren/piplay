@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 from gpiozero import LightSensor
 from time import sleep
 
