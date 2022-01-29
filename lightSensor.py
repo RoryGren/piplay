@@ -10,8 +10,8 @@ ldr = LightSensor(18)
     # Main loop
 while True:
     try:
-        sleep(0.1)
+        sleep(0.01)
         print(ldr.value)
     except KeyboardInterrupt:
-        sys.exit(0)
+        sys.exit("Operation cancelled by user")
     
