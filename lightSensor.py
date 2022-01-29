@@ -8,7 +8,7 @@ from timeit import default_timer as timer
 ldr = LightSensor(18)
 oldLightState = "off"
 lightState = ""
-
+start = timer()
     # Main loop
 while True:
     try:
