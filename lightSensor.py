@@ -19,9 +19,11 @@ while True:
         else:
             lightState = "on"
         if oldLightState != lightState:
-            #start = timer()
+            end = timer()
+            print(end - start)
             print(lightState)
             oldLightState = lightState
+            start = timer()
         else:
             print(lightState)
     except KeyboardInterrupt:
