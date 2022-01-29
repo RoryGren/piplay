@@ -10,7 +10,7 @@ oldLightState = "off"
 lightState = ""
 flashes = ""
 message = ""
-receiving = true
+receiving = "true" 
 start = timer()
 
 MORSE_CODE_DICT = { 'A':'.-',     'B':'-...',
@@ -53,7 +53,7 @@ while receiving:
                     flashes += " "
                 elif duration > 3:
                     flashes += "   "
-                    receiving = false
+                    receiving = "false"
                 else:
                     flashes = "  "
             oldLightState = lightState
