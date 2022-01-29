@@ -30,47 +30,6 @@ MORSE_CODE_DICT = { 'A':'.-',     'B':'-...',
                     '(':'-.--.',  ')':'-.--.-'}
 
 
-# Main loop
-while receiving == "true":
-    try:
-        sleep(0.05)
-        if ldr.value < 0.5:
-            lightState = "off"
-        else:
-            lightState = "on"
-        if oldLightState != lightState:
-            end = timer()
-            duration = end - start
-            if oldLightState == "on":
-                if duration > 1.5:
-                    flashes += "-"
-                else:
-                    flashes += "."
-            else:
-                if duration > 3:
-                    #end of message
-                    receiving = "false"
-                    break
-                if duration < 1.5:
-                    #inter-letter space
-                    flashes += " "
-                else:
-                    #inter-word space
-                    flashes += "  "
-            oldLightState = lightState
-            start = timer()
-        #else:
-            #print(duration)
-        
-        print(flashes)
-    except KeyboardInterrupt:
-        sys.exit("Operation cancelled by user")
-
-print(flashes)
-message = decrypt(flashes)
-print(message)
-sys.exit()
-
 def decrypt(message):
  
     # extra space added at the end to access the
@@ -109,3 +68,48 @@ def decrypt(message):
  
     return decipher
 
+# Main loop
+def main():
+    while receiving == "true":
+        try:
+            sleep(0.05)
+            if ldr.value < 0.5:
+                lightState = "off"
+            else:
+                lightState = "on"
+            if oldLightState != lightState:
+                end = timer()
+                duration = end - start
+                if oldLightState == "on":
+                    if duration > 1.5:
+                        flashes += "-"
+                    else:
+                        flashes += "."
+                else:
+                    if duration > 3:
+                        #end of message
+                        receiving = "false"
+                        break
+                    if duration < 1.5:
+                        #inter-letter space
+                        flashes += " "
+                    else:
+                        #inter-word space
+                        flashes += "  "
+                oldLightState = lightState
+                start = timer()
+            #else:
+                #print(duration)
+            
+            print(flashes)
+        except KeyboardInterrupt:
+            sys.exit("Operation cancelled by user")
+
+    print(flashes)
+    message = decrypt(flashes)
+    print(message)
+    sys.exit()
+ 
+# Executes the main function
+if __name__ == '__main__':
+    main()
