@@ -49,14 +49,15 @@ while True:
                     flashes += "."
             else:
                 if duration > 1.5:
-                    flashes = "  "
+                    flashes += "  "
                 else:
-                    flashes = " "
+                    flashes += " "
                 
             oldLightState = lightState
             start = timer()
         #else:
-            #print(lightState)
+            #print(duration)
+        
         print(flashes)
     except KeyboardInterrupt:
         sys.exit("Operation cancelled by user")
