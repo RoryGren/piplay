@@ -42,7 +42,7 @@ while True:
             #print(lightState)
             end = timer()
             duration = end - start
-            if lightState == "on":
+            if oldLightState == "on":
                 if duration > 1.5:
                     flashes += "-"
                 else:
