@@ -10,6 +10,7 @@ oldLightState = "off"
 lightState = ""
 flashes = ""
 message = ""
+receiving = true
 start = timer()
 
 MORSE_CODE_DICT = { 'A':'.-',     'B':'-...',
@@ -30,7 +31,7 @@ MORSE_CODE_DICT = { 'A':'.-',     'B':'-...',
 
 
 # Main loop
-while True:
+while receiving:
     try:
         sleep(0.05)
         #print(ldr.value)
@@ -48,11 +49,13 @@ while True:
                 else:
                     flashes += "."
             else:
-                if duration > 1.5:
-                    flashes += "  "
-                else:
+                if duration < 1.5:
                     flashes += " "
-                
+                elif duration > 3:
+                    flashes += "   "
+                    receiving = false
+                else:
+                    flashes = "  "
             oldLightState = lightState
             start = timer()
         #else:
@@ -61,4 +64,5 @@ while True:
         print(flashes)
     except KeyboardInterrupt:
         sys.exit("Operation cancelled by user")
-    
+
+
