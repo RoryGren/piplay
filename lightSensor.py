@@ -68,6 +68,7 @@ def main():
     lightState = ""
     flashes = ""
     message = ""
+    duration = 0
 
     oldLightState = "off"
     receiving = "true" 
@@ -101,8 +102,8 @@ def main():
                         flashes += "  "
                 oldLightState = lightState
                 start = timer()
-            #else:
-                #print(duration)
+            else:
+                print(duration)
             
             print(flashes)
         except KeyboardInterrupt:
