@@ -33,33 +33,25 @@ def decrypt(message):
     decipher = ''
     citext = ''
     for letter in message:
- 
-        # checks for space
+        # check for space
         if (letter != ' '):
- 
             # counter to keep track of space
             i = 0
- 
             # storing morse code of a single character
             citext += letter
- 
         # in case of space
         else:
             # if i = 1 that indicates a new character
             i += 1
- 
             # if i = 2 that indicates a new word
             if i == 2 :
- 
                  # adding space to separate words
                 decipher += ' '
             else:
- 
                 # accessing the keys using their values (reverse of encryption)
                 decipher += list(MORSE_CODE_DICT.keys())[list(MORSE_CODE_DICT
                 .values()).index(citext)]
                 citext = ''
- 
     return decipher
 
 
@@ -103,9 +95,9 @@ def main():
                 oldLightState = lightState
                 start = timer()
             else:
-                print(duration)
+                print(str(duration) + " " + lightState)
             
-            print(flashes)
+            #print(flashes)
         except KeyboardInterrupt:
             sys.exit("Operation cancelled by user")
 
