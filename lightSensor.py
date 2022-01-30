@@ -76,7 +76,14 @@ def main():
                 lightState = "off"
             else:
                 lightState = "on"
-            if oldLightState != lightState:
+            if oldLightState == lightState:
+                if duration > 3 and lightState == "off" and started != "no":
+                    #end of message
+                    print("End of message")
+                    print(flashes)
+                    receiving = "false"
+                    break
+            else:
                 end = timer()
                 duration = end - start
                 print(duration)
@@ -87,12 +94,6 @@ def main():
                     else:
                         flashes += "."
                 else:
-                    if duration > 3 and started != "no":
-                        #end of message
-                        print("End of message")
-                        print(flashes)
-                        receiving = "false"
-                        break
                     if duration < 1.5 and started != "no":
                         #inter-letter space
                         flashes += " "
@@ -101,10 +102,7 @@ def main():
                         flashes += "  "
                 oldLightState = lightState
                 start = timer()
-            else:
-                print(lightState)
             
-            #print(flashes)
         except KeyboardInterrupt:
             sys.exit("Operation cancelled by user")
 
