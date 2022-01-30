@@ -29,7 +29,8 @@ def decrypt(message):
     # extra space added at the end to access the
     # last morse code
     message += ' '
- 
+    i = 0
+    print(message)
     decipher = ''
     citext = ''
     for letter in message:
@@ -60,6 +61,7 @@ def main():
     lightState = ""
     flashes = ""
     message = ""
+    started = "no"
     duration = 0
 
     oldLightState = "off"
@@ -69,6 +71,7 @@ def main():
     while receiving:
         try:
             sleep(0.05)
+            print(started)
             if ldr.value < 0.5:
                 lightState = "off"
             else:
@@ -76,17 +79,21 @@ def main():
             if oldLightState != lightState:
                 end = timer()
                 duration = end - start
+                print(duration)
                 if oldLightState == "on":
+                    started = "yes"
                     if duration > 1.5:
                         flashes += "-"
                     else:
                         flashes += "."
                 else:
-                    if duration > 3:
+                    if duration > 3 and started != "no":
                         #end of message
+                        print("End of message")
+                        print(flashes)
                         receiving = "false"
                         break
-                    if duration < 1.5:
+                    if duration < 1.5 and started != "no":
                         #inter-letter space
                         flashes += " "
                     else:
@@ -95,7 +102,7 @@ def main():
                 oldLightState = lightState
                 start = timer()
             else:
-                print(str(duration) + " " + lightState)
+                print(lightState)
             
             #print(flashes)
         except KeyboardInterrupt:
